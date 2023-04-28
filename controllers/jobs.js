@@ -1,12 +1,7 @@
 const User = require("../models/User");
 
-const getAllJobs = async (req, res) =>{
-    try {
-      const jobs = await User.find({})
-      res.send(jobs)
-    } catch (error) {
-      console.log(error)
-    }
+const getAllJobs = (req, res) =>{
+    res.send("all jobs")
 }
 
 const getJob = (req, res) => {
@@ -14,11 +9,7 @@ const getJob = (req, res) => {
 };
 
 const createJob = async (req, res) => {
-  try {
-
-  } catch (error) {
-    console.log(error)
-  }
+  res.send("create job")
 };
 
 const updateJob = (req, res) => {

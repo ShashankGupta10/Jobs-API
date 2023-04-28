@@ -24,18 +24,12 @@ const login = async (req, res) =>{
     try {
         const { email, password } = req.body;
         const loggedInUser = await User.findOne({email: email});
+        if(loggedInUser){    
+            const isCorrect = await loggedInUser.comparePassword(password)
 
-        if(loggedInUser){
-            isMatch = await bcrypt.compare(password, loggedInUser.password);
-            console.log(isMatch);
-            console.log(loggedInUser);
-    
-            if(isMatch){
-                const token = jwt.sign({loggedInUser}, secret );
-                res.status(200).json({msg: "Logged in successfully", token});
-            }
-            else{
-                res.status(400).json({msg: "Invalid password for the above username! Please enter a valid password"});
+            if(isCorrect){
+                const token = loggedInUser.createJWT()
+                res.status(200).json({msg: "User Logged In Successfully!", token})
             }
         }
         else{
@@ -43,7 +37,6 @@ const login = async (req, res) =>{
         }
     } catch (error) {
         res.status(500).json({error: error});
-        console.log(error);
     }   
 }
 
