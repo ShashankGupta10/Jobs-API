@@ -1,13 +1,24 @@
-const getAllJobs = (req, res) =>{
-    res.send("All Jobs")
+const User = require("../models/User");
+
+const getAllJobs = async (req, res) =>{
+    try {
+      const jobs = await User.find({})
+      res.send(jobs)
+    } catch (error) {
+      console.log(error)
+    }
 }
 
 const getJob = (req, res) => {
   res.send("Single Job");
 };
 
-const createJob = (req, res) => {
-  res.send("create Job");
+const createJob = async (req, res) => {
+  try {
+
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 const updateJob = (req, res) => {
