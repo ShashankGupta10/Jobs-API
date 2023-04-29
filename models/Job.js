@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./User');
 
 const JobSchema = new mongoose.Schema({
     company: {
@@ -21,7 +22,7 @@ const JobSchema = new mongoose.Schema({
 
     createdBy: {
         type: mongoose.Types.ObjectId,
-        ref: user,
+        ref: User,
         required: [true, 'Please provide true']
     },
 
